@@ -1,8 +1,6 @@
-const models = require('../../utils/nameTable.js')
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable(models.users, {
+    return queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -32,6 +30,6 @@ module.exports = {
     })
   },
   down: queryInterface => {
-    return queryInterface.dropTable(models.users)
+    return queryInterface.dropTable('users')
   },
 }

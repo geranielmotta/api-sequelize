@@ -4,9 +4,9 @@
   "description": "Projeto exemplo jest",
   "main": "index.js",
   "scripts": {
-    "test": "sequelize db:migrate:undo:all  && sequelize db:migrate && sequelize db:seed:all  && nyc --require @babel/register  mocha --recursive ./api/test/index.js --timeout 20000 --exit",
-    "dev": "sequelize db:migrate:undo:all  && sequelize db:migrate && sequelize db:seed:all && nodemon --exec babel-node ./api/index.js",
-    "start": "sequelize db:migrate:undo:all  && sequelize db:migrate && babel-node ./api/index.js",
+    "test": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all && nyc --require @babel/register  mocha --recursive ./api/test/index.js --timeout 20000 --exit",
+    "dev": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all && nodemon --exec babel-node ./api/index.js",
+    "start": "sequelize db:migrate:undo:all && sequelize db:migrate && babel-node ./api/index.js",
     "lint": "eslint --ext .js --cache api/ "
   },
   "repository": {

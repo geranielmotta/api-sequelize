@@ -1,9 +1,7 @@
-const models = require('../../utils/nameTable.js')
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert(
-      models.users,
+      'users',
       [
         {
           name: 'teste',
@@ -18,6 +16,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete(models.users, null, {})
+    return queryInterface.bulkDelete('users', null, {})
   },
 }

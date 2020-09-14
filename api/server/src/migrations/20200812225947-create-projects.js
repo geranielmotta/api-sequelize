@@ -1,8 +1,6 @@
-const models = require('../../utils/nameTable.js')
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable(models.projects, {
+    return queryInterface.createTable('projects', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -24,7 +22,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: {
-            tableName: models.users,
+            tableName: 'users',
           },
           key: 'id',
         },
@@ -42,6 +40,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable(models.projects)
+    return queryInterface.dropTable('projects')
   },
 }

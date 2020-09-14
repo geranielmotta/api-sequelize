@@ -1,7 +1,5 @@
-const models = require('../../utils/nameTable.js')
-
 module.exports = (sequelize, DataTypes) => {
-  const users = sequelize.define(models.users, {
+  const users = sequelize.define('users', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
