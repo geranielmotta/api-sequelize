@@ -5,8 +5,6 @@ import app from '../index'
 
 chai.use(chatHttp)
 const { expect } = chai
-const token =
-  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMC4yMC4xOC43ODo4MDAwXC9sb2dpbiIsImlhdCI6MTU2NjU4MzY2NCwiZXhwIjoxNTY2NTk0NDY0LCJuYmYiOjE1NjY1ODM2NjQsImp0aSI6IjJiZHdtWmlOSlVkOWNDakwiLCJzdWIiOjEwLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.fVIWLHzuqYnw6xSIGs3G8F_F6E1AVIhMzxEfOEZXwvY'
 
 describe('Início dos testes : ', () => {
   it('Dado que estou a inserir um novo usuário, preencho corretamente as informações, então devo receber uma mensagem de sucesso.', done => {
@@ -123,7 +121,6 @@ describe('Início dos testes : ', () => {
     const user = {
       name: 'new user',
       username: 'new.user',
-      token,
       expired_at: 'dsd987sda',
     }
     chai
