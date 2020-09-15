@@ -4,8 +4,8 @@ module.exports = {
       'users',
       [
         {
-          name: 'teste',
-          username: 'teste',
+          name: 'Geraniel de Oliveira Motta',
+          username: 'geraniel.motta',
           password: 'teste',
           createdAt: new Date(),
           updatedAt: new Date(),

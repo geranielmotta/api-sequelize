@@ -74,45 +74,6 @@ API
 | GET    | Busca informações de um usuário | `/api/v1/user/:id` |
 | DELETE | Remove usuário                  | `/api/v1/user/:id` |
 
-## Story Endpoints
-
-| METHOD | DESCRIÇÂO                        | ENDPOINTS           |
-| ------ | -------------------------------- | ------------------- |
-| POST   | Add nova estória                 | `/api/v1/story`     |
-| GET    | Busca todas as estórias          | `/api/v1/story`     |
-| PUT    | Atualiza uma estória             | `/api/v1/story/:id` |
-| GET    | Busca informações de uma estória | `/api/v1/story/:id` |
-| DELETE | Remove estória                   | `/api/v1/story/:id` |
-
-## Scenery Endpoints
-
-| METHOD | DESCRIÇÂO               | ENDPOINTS             |
-| ------ | ----------------------- | --------------------- |
-| POST   | Add novo cenário        | `/api/v1/scenery`     |
-| GET    | Busca todas os cenários | `/api/v1/scenery/:id` |
-
-## Step Endpoints
-
-| METHOD | DESCRIÇÂO                           | ENDPOINTS                  |
-| ------ | ----------------------------------- | -------------------------- |
-| POST   | Add um passo de um teste            | `/api/v1/step`             |
-| GET    | Busca todas os passos de um cenário | `/api/v1/step/scenery/:id` |
-
-## Result Endpoints
-
-| METHOD | DESCRIÇÂO                               | ENDPOINTS                    |
-| ------ | --------------------------------------- | ---------------------------- |
-| POST   | Add resultados de um teste              | `/api/v1/result`             |
-| GET    | Busca todas os resultados               | `/api/v1/result`             |
-| GET    | Busca todas os resultados de um cenário | `/api/v1/result/scenery/:id` |
-
-## Configuration Endpoints
-
-| METHOD | DESCRIÇÂO                                                      | ENDPOINTS                           |
-| ------ | -------------------------------------------------------------- | ----------------------------------- |
-| POST   | Add resultados de um teste                                     | `/api/v1/configuration`             |
-| GET    | Busca todas as configurações para rodar um teste de um cenário | `/api/v1/configuration/scenery/:id` |
-
 ## Project Endpoints
 
 | METHOD | DESCRIÇÂO                       | ENDPOINTS             |
@@ -122,12 +83,6 @@ API
 | PUT    | Atualiza um projeto             | `/api/v1/project/:id` |
 | GET    | Busca informações de um projeto | `/api/v1/project/:id` |
 | DELETE | Remove um projeto               | `/api/v1/project/:id` |
-
-## Upload Endpoints
-
-| METHOD | DESCRIÇÂO                                                           | ENDPOINTS        |
-| ------ | ------------------------------------------------------------------- | ---------------- |
-| POST   | Add somente imagens (image/jpeg, image/pjpeg, image/png, image/gif) | `/api/v1/upload` |
 
 ## Tests
 

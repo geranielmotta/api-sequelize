@@ -17,7 +17,6 @@ export default class Util {
     this.statusCode = statusCode
     this.message = message
     this.type = 'danger'
-    console.log(message)
   }
 
   send(res) {

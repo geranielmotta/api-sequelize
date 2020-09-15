@@ -21,8 +21,8 @@ class UserController {
   }
 
   async addUser(req, res) {
-    const { name, username, token, expired_at } = req.body
-    if (!name || !username || !token || !expired_at) {
+    const { name, username, password } = req.body
+    if (!name || !username || !password) {
       util.setError(400, 'Por favor, forneça detalhes completos')
       return util.send(res)
     }

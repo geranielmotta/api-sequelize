@@ -18,16 +18,6 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
       },
-      users_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: 'users',
-          },
-          key: 'id',
-        },
-        allowNull: false,
-      },
       createdAt: {
         allowNull: true,
         type: Sequelize.DATE,

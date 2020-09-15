@@ -25,3 +25,7 @@ describe('Bem vindo aos testes da API :  ', () => {
 describe('Endpoints de users ', () => {
   require('./testUser')
 })
+
+describe('Endpoints de project ', () => {
+  require('./testProject')
+})

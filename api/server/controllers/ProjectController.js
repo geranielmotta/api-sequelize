@@ -3,7 +3,6 @@ import Util from '../utils/Utils'
 
 const util = new Util()
 const services = new ProjectService()
-
 class ProjectController {
   async getAllProjects(req, res) {
     try {
@@ -21,8 +20,8 @@ class ProjectController {
   }
 
   async addProject(req, res) {
-    const { name, customers, start, description, image } = req.body
-    if (!name || !customers || !start || !description || !image) {
+    const { name, start, description } = req.body
+    if (!name || !start || !description) {
       util.setError(400, 'Por favor, forneça detalhes completos')
       return util.send(res)
     }
@@ -39,6 +38,7 @@ class ProjectController {
 
   async updatedProject(req, res) {
     const alteredProject = req.body
+
     const { id } = req.params
     if (!Number(id)) {
       util.setError(400, 'Por favor insira um valor numérico válido')
@@ -49,7 +49,7 @@ class ProjectController {
       if (!updateProject) {
         util.setError(404, `Não é possível encontrar o projeto com o id: ${id}`)
       } else {
-        util.setSuccess(200, 'Project atualizado', updateProject)
+        util.setSuccess(200, 'Projeto atualizado', updateProject)
       }
       return util.send(res)
     } catch (error) {

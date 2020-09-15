@@ -12,10 +12,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    expired_at: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
   })
   return users
 }

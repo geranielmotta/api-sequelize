@@ -7,6 +7,7 @@ module.exports = {
     password: 'teste',
     host: '172.17.0.4',
     dialect: 'postgres',
+    logging: false,
   },
 
   test: {

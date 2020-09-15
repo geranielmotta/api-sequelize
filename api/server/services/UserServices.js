@@ -4,7 +4,7 @@ class UserService {
   async getAllUsers() {
     try {
       return await db.users.findAll({
-        attributes: ['id', 'name', 'username', 'token', 'expired_at'],
+        attributes: ['id', 'name', 'username', 'password'],
       })
     } catch (error) {
       throw error
@@ -48,23 +48,6 @@ class UserService {
     }
   }
 
-  async getToken(token) {
-    try {
-      const user = await db.users.findOne({
-        attributes: ['id', 'name', 'username', 'token', 'expired_at'],
-        where: { token: token },
-        logging: false,
-      })
-
-      if (user) {
-        return user
-      }
-      return null
-    } catch (error) {
-      throw error
-    }
-  }
-
   async searchUserByName(username) {
     try {
       const user = await db.users.findOne({
@@ -72,7 +55,6 @@ class UserService {
         where: { username },
         logging: false,
       })
-      console.log(user)
       if (user) {
         return user
       }

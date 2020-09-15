@@ -7,108 +7,109 @@ chai.use(chatHttp)
 const { expect } = chai
 
 describe('Início dos testes : ', () => {
-  it('Dado que estou a inserir um novo usuário, preencho corretamente as informações, então devo receber uma mensagem de sucesso.', done => {
-    const user = {
-      name: 'Geraniel de Oliveira Motta',
-      username: 'geraniel.motta',
-      password: 'teste',
+  it('Dado que estou a inserir um novo projeto, preencho corretamente as informações, então devo receber uma mensagem de sucesso.', done => {
+    const project = {
+      name: 'Teste com jest',
+      description: 'Descrição do projeto tal',
+      start: '2020-08-12T00:00:00.000Z',
     }
     chai
       .request(app)
-      .post('/api/v1/user')
+      .post('/api/v1/project')
       .set('Content-Type', 'application/json')
-      .send(user)
+      .send(project)
       .end((err, res) => {
         expect(res.status).to.equal(201)
         expect(res.body.data).to.include({
           id: 2,
-          name: user.name,
-          username: user.username,
-          password: user.password,
+          name: project.name,
+          description: project.description,
+          start: project.start,
         })
         done()
       })
   })
 
-  it('Dado que estou a cadastrar um novo usuário com campos vazios, então devo receber uma mensagem de erro', done => {
-    const user = {}
+  it('Dado que estou a cadastrar um novo projeto com campos vazios, então devo receber uma mensagem de erro', done => {
+    const project = {}
     chai
       .request(app)
-      .post('/api/v1/user')
+      .post('/api/v1/project')
       .set('Content-Type', 'application/json')
-      .send(user)
+      .send(project)
       .end((err, res) => {
         expect(res.status).to.equal(400)
         done()
       })
   })
 
-  it('Dado que estou a cadastrar um novo usuário, mas não preencho todos os parametros, então devo receber uma mensagem de erro', done => {
-    const user = {
-      name: 'asasa',
-      username: 'sdasds.sadds',
+  it('Dado que estou a cadastrar um novo projeto, mas não preencho todos os parametros, então devo receber uma mensagem de erro', done => {
+    const project = {
+      name: 'Teste com jest',
+      description: 'Descrição do projeto tal',
     }
     chai
       .request(app)
-      .post('/api/v1/user')
+      .post('/api/v1/project')
       .set('Content-Type', 'application/json')
-      .send(user)
+      .send(project)
       .end((err, res) => {
         expect(res.status).to.equal(400)
         done()
       })
   })
 
-  it('Dado que estou a buscar todos os usuários, então devo receber uma lista de todos os usuários cadastrados', done => {
+  it('Dado que estou a buscar produtos, então devo receber uma lista de todos os projetos cadastrados', done => {
     chai
       .request(app)
-      .get('/api/v1/user')
+      .get('/api/v1/project')
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(200)
         res.body.data[0].should.have.property('id')
         res.body.data[0].should.have.property('name')
-        res.body.data[0].should.have.property('username')
-        res.body.data[0].should.have.property('password')
+        res.body.data[0].should.have.property('description')
+        res.body.data[0].should.have.property('start')
         done()
       })
   })
 
-  it('Dado que estou buscando informações de um determinado usuário, então devo receber corretamente as informações', done => {
+  it('Dado que estou buscando informações de um determinado projeto, então devo receber corretamente as informações', done => {
     const id = 1
     chai
       .request(app)
-      .get(`/api/v1/user/${id}`)
+      .get(`/api/v1/project/${id}`)
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(200)
         res.body.data.should.have.property('id')
         res.body.data.should.have.property('name')
-        res.body.data.should.have.property('username')
+        res.body.data.should.have.property('description')
+        res.body.data.should.have.property('start')
         done()
       })
   })
 
-  it('Dado que estou a editar as informações do usuário, informo um id válido, mas não existente no banco. Então devo receber uma mensagem de erro', done => {
+  it('Dado que estou a editar as informações do projeto, informo um id válido, mas não existente no banco. Então devo receber uma mensagem de erro', done => {
     const id = 213213
     chai
       .request(app)
-      .get(`/api/v1/user/${id}`)
+      .get(`/api/v1/project/${id}`)
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(404)
         res.body.should.have
           .property('message')
-          .eql(`Não é possível encontrar o usuário com o id ${id}`)
+          .eql(`Não é possível encontrar o projeto com o id ${id}`)
         done()
       })
   })
 
-  it('Dado que estou atualizando usuários, informo um id inválido, então devo receber uma mensagem de erro', done => {
+  it('Dado que estou atualizando um projeto, informo um id inválido, então devo receber uma mensagem de erro', done => {
     const id = 'aaa'
     chai
       .request(app)
-      .get(`/api/v1/user/${id}`)
+      .get(`/api/v1/project/${id}`)
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(400)
@@ -119,45 +120,46 @@ describe('Início dos testes : ', () => {
       })
   })
 
-  it('Dado que estou atualizando informações de um usuário, informo os campos válidos então devo receber uma mensagem de sucesso', done => {
+  it('Dado que estou atualizando informações de um projeto, informo os campos válidos então devo receber uma mensagem de sucesso', done => {
     const id = 1
-    const user = {
-      name: 'new user',
-      username: 'new.user',
+    const project = {
+      name: 'Teste de projeto editado',
+      description: 'Descrição do projeto tal',
+      start: '2020-08-12T00:00:00.000Z',
     }
     chai
       .request(app)
-      .put(`/api/v1/user/${id}`)
+      .put(`/api/v1/project/${id}`)
       .set('Content-Type', 'application/json')
-      .send(user)
+      .send(project)
       .end((err, res) => {
         expect(res.status).to.equal(200)
         expect(res.body.status).equal('success')
-        expect(res.body.message).equal('User atualizado')
+        expect(res.body.message).equal('Projeto atualizado')
         done()
       })
   })
 
-  it('Dado que estou a atualizar usuários, informo um id inválido, então recebo uma mensagem de erro', done => {
+  it('Dado que estou a atualizar um projeto, informo um id inválido, então recebo uma mensagem de erro', done => {
     const id = '9999'
     chai
       .request(app)
-      .put(`/api/v1/user/${id}`)
+      .put(`/api/v1/project/${id}`)
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(404)
         res.body.should.have
           .property('message')
-          .eql(`Não é possível encontrar o usuário com o id: ${id}`)
+          .eql(`Não é possível encontrar o projeto com o id: ${id}`)
         done()
       })
   })
 
-  it('Dado que estou a remover usuários, informo um id do tipo inválido, então devo receber uma mensagem', done => {
+  it('Dado que estou deletando projetos, informo um id do tipo inválido, então devo receber uma mensagem', done => {
     const id = 'bbb'
     chai
       .request(app)
-      .delete(`/api/v1/user/${id}`)
+      .delete(`/api/v1/project/${id}`)
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(400)
@@ -168,11 +170,11 @@ describe('Início dos testes : ', () => {
       })
   })
 
-  it('Dado que estou a remover usuários, e não informo um id, então devo receber uma mensagem', done => {
+  it('Dado que estou a deletando projetos, e não informo um id, então devo receber uma mensagem', done => {
     const id = ''
     chai
       .request(app)
-      .delete(`/api/v1/user/${id}`)
+      .delete(`/api/v1/project/${id}`)
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(404)
@@ -181,26 +183,26 @@ describe('Início dos testes : ', () => {
       })
   })
 
-  it('Dado que estou a remover usuários, informo um id válido, mas que não existe. Então devo receber uma mensagem', done => {
+  it('Dado que estou a remover projetos, informo um id válido, mas que não existe. Então devo receber uma mensagem', done => {
     const id = 777
     chai
       .request(app)
-      .delete(`/api/v1/user/${id}`)
+      .delete(`/api/v1/project/${id}`)
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(404)
         res.body.should.have
           .property('message')
-          .eql(`Usuário com o id  ${id} não pode ser encontrado`)
+          .eql(`projeto com o id  ${id} não pode ser encontrado`)
         done()
       })
   })
 
-  it('Dado que estou a remover usuários, informo um id válido, então o usuário e removido', done => {
+  it('Dado que estou a remover projetos, informo um id válido, então o usuário e removido', done => {
     const id = 1
     chai
       .request(app)
-      .delete(`/api/v1/user/${id}`)
+      .delete(`/api/v1/project/${id}`)
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(200)

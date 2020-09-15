@@ -26,7 +26,7 @@ class ProjectService {
       })
 
       if (projectToUpdate) {
-        return await db.Projects.update(updateProject, {
+        return await db.projects.update(updateProject, {
           where: { id: Number(id) },
         })
       }
@@ -38,7 +38,7 @@ class ProjectService {
 
   async getProject(id) {
     try {
-      return await db.Projects.findOne({
+      return await db.projects.findOne({
         where: { id: Number(id) },
       })
     } catch (error) {

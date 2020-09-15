@@ -7,7 +7,6 @@ module.exports = {
           name: 'Teste com jest',
           start: '2020-08-12',
           description: 'Descrição do projeto tal',
-          users_id: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
