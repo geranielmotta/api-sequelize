@@ -89,6 +89,31 @@ describe('Início dos testes : ', () => {
       })
   })
 
+  it('Dado que estou buscando pelo nome de um usuário, então devo receber corretamente as informações', done => {
+    const username = 'geraniel.motta'
+    chai
+      .request(app)
+      .get(`/api/v1/user/username/${username}`)
+      .set('Content-Type', 'application/json')
+      .end((err, res) => {
+        expect(res.status).to.equal(200)
+        res.body.data.should.have.property('id')
+        done()
+      })
+  })
+
+  it('Dado que estou buscando pelo nome de um usuário, mas a api falha', done => {
+    const username = ''
+    chai
+      .request(app)
+      .get(`/api/v1/user/username/${username}`)
+      .set('Content-Type', 'application/json')
+      .end((err, res) => {
+        expect(res.status).to.equal(400)
+        done()
+      })
+  })
+
   it('Dado que estou a editar as informações do usuário, informo um id válido, mas não existente no banco. Então devo receber uma mensagem de erro', done => {
     const id = 213213
     chai
